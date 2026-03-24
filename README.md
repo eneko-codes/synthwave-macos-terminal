@@ -4,7 +4,7 @@ A synthwave-inspired neon dark theme for macOS Terminal.app and [Starship](https
 
 Companion to [synthwave-theme](https://github.com/eneko-codes/synthwave-theme) for Zed — same colors, same vibe.
 
-![Synthwave Neon Dark Terminal](images/preview.png)
+![Synthwave Neon Dark Terminal](images/terminal.png)
 
 ## Colors
 
