@@ -7,12 +7,12 @@
 palette = "synthwave"
 
 format = """
-[](fg:purple_dark)\
+[](fg:purple_dark)\
 $directory\
 [](bg:purple_mid fg:purple_dark)\
 $git_branch\
 $git_status\
-[ ](fg:purple_mid)\
+[ ](fg:purple_mid)\
 $fill\
 $nodejs$bun$deno$rust$python$golang$java$ruby$kotlin$dart$php$c$lua$elixir$zig$swift$terraform$kubernetes$docker_context$package\
 $cmd_duration\
