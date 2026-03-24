@@ -7,7 +7,6 @@
 palette = "synthwave"
 
 format = """
-[](fg:purple_dark)\
 $directory\
 $git_branch\
 $git_status\
