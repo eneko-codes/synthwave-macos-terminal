@@ -45,7 +45,7 @@ truncation_symbol = "…/"
 
 [git_branch]
 symbol = ""
-style = "bg:purple_mid fg:purple bold"
+style = "bg:purple_dark fg:purple bold"
 format = "[ $symbol $branch ]($style)"
 
 [git_status]
