@@ -1,57 +1,157 @@
-# Synthwave Neon Dark - Starship prompt colors
-# Merge these settings into your existing ~/.config/starship.toml
+# Synthwave Neon Dark — Starship Powerline Prompt
+# Purple powerline segments with Nerd Font icons.
 #
-# Uses a named palette so all synthwave colors are defined once.
-# Requires a Nerd Font for the symbols.
+# Copy to ~/.config/starship.toml or merge into your existing config.
+# Requires a Nerd Font for symbols and powerline characters.
 
 palette = "synthwave"
+
+format = """
+[](fg:purple_dark)\
+$directory\
+[](bg:purple_mid fg:purple_dark)\
+$git_branch\
+$git_status\
+[ ](fg:purple_mid)\
+$fill\
+$nodejs$bun$deno$rust$python$golang$java$ruby$kotlin$dart$php$c$lua$elixir$zig$swift$terraform$kubernetes$docker_context$package\
+$cmd_duration\
+$line_break\
+$character"""
 
 [palettes.synthwave]
 pink = "#ff2d95"
 cyan = "#00fff5"
-purple = "#c96eff"
+purple = "#e48fff"
+purple_dark = "#382a58"
+purple_mid = "#4d3b70"
 yellow = "#fffe6e"
 orange = "#ff9e64"
 green = "#5cffaa"
 blue = "#88aaff"
 red = "#ff4055"
 fg = "#e2d9f3"
-muted = "#6e6890"
+bg = "#14101f"
+muted = "#5e5575"
 
-[character]
-success_symbol = "[❯](bold purple)"
-error_symbol = "[❯](bold red)"
+[fill]
+symbol = " "
 
 [directory]
-style = "bold cyan"
+style = "bg:purple_dark fg:purple bold"
+format = "[  $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
 
 [git_branch]
-style = "pink"
+symbol = ""
+style = "bg:purple_mid fg:purple bold"
+format = "[ $symbol $branch ]($style)"
 
 [git_status]
-style = "yellow"
+style = "bg:purple_mid fg:purple"
+format = "[$all_status$ahead_behind]($style)"
+
+[character]
+success_symbol = "[›](bold purple)"
+error_symbol = "[›](bold red)"
 
 [cmd_duration]
 style = "muted"
 min_time = 2_000
 
 [nodejs]
+symbol = ""
 style = "green"
+format = "[via $symbol $version ]($style)"
 
 [python]
+symbol = ""
 style = "yellow"
+format = "[via $symbol $version ]($style)"
 
 [rust]
+symbol = ""
 style = "orange"
+format = "[via $symbol $version ]($style)"
 
 [golang]
+symbol = ""
 style = "cyan"
-
-[docker_context]
-style = "blue"
+format = "[via $symbol $version ]($style)"
 
 [swift]
+symbol = ""
 style = "orange"
+format = "[via $symbol $version ]($style)"
+
 
 [package]
 style = "orange"
+format = "[via $symbol$version ]($style)"
+
+[java]
+symbol = ""
+style = "red"
+format = "[via $symbol $version ]($style)"
+
+[ruby]
+symbol = ""
+style = "red"
+format = "[via $symbol $version ]($style)"
+
+[php]
+symbol = ""
+style = "blue"
+format = "[via $symbol $version ]($style)"
+
+[c]
+symbol = ""
+style = "blue"
+format = "[via $symbol $version ]($style)"
+
+[kotlin]
+symbol = ""
+style = "purple"
+format = "[via $symbol $version ]($style)"
+
+[dart]
+symbol = ""
+style = "cyan"
+format = "[via $symbol $version ]($style)"
+
+[lua]
+symbol = ""
+style = "blue"
+format = "[via $symbol $version ]($style)"
+
+[elixir]
+symbol = ""
+style = "purple"
+format = "[via $symbol $version ]($style)"
+
+[zig]
+symbol = ""
+style = "orange"
+format = "[via $symbol $version ]($style)"
+
+[bun]
+style = "fg"
+format = "[via $symbol$version ]($style)"
+
+[deno]
+style = "green"
+format = "[via $symbol$version ]($style)"
+
+[terraform]
+style = "blue"
+format = "[via $symbol$version ]($style)"
+
+[kubernetes]
+style = "cyan"
+format = "[on $symbol$context ]($style)"
+disabled = false
+
+[docker_context]
+style = "blue"
+format = "[via $symbol$context ]($style)"
