@@ -9,10 +9,10 @@ palette = "synthwave"
 format = """
 [](fg:purple_dark)\
 $directory\
-[](bg:purple_mid fg:purple_dark)\
 $git_branch\
 $git_status\
-[ ](fg:purple_mid)\
+${custom.cap_git}\
+${custom.cap_dir}\
 $fill\
 $nodejs$bun$deno$rust$python$golang$java$ruby$kotlin$dart$php$c$lua$elixir$zig$swift$terraform$kubernetes$docker_context$package\
 $cmd_duration\
@@ -45,12 +45,22 @@ truncation_symbol = "…/"
 
 [git_branch]
 symbol = ""
-style = "bg:purple_dark fg:purple bold"
-format = "[ $symbol $branch ]($style)"
+style = "bg:purple_mid fg:purple bold"
+format = "[](bg:purple_mid fg:purple_dark)[ $symbol $branch ]($style)"
 
 [git_status]
 style = "bg:purple_mid fg:purple"
 format = "[$all_status$ahead_behind]($style)"
+
+[custom.cap_dir]
+when = "! git rev-parse --git-dir 2>/dev/null"
+format = "[](fg:purple_dark)"
+shell = ["sh"]
+
+[custom.cap_git]
+when = "git rev-parse --git-dir 2>/dev/null"
+format = "[](fg:purple_mid)"
+shell = ["sh"]
 
 [character]
 success_symbol = "[›](bold purple)"
