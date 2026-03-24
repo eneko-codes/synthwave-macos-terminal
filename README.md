@@ -6,6 +6,13 @@ Companion to [synthwave-theme](https://github.com/eneko-codes/synthwave-theme) f
 
 ![Synthwave Neon Dark Terminal](images/terminal.png)
 
+## Features
+
+- 16 ANSI colors matched to the Zed synthwave theme
+- 90% background opacity with 50% blur (frosted glass)
+- 1.1x line height for comfortable reading
+- Starship prompt with named synthwave color palette
+
 ## Colors
 
 | Color   | Normal    | Bright    |
@@ -30,7 +37,11 @@ Companion to [synthwave-theme](https://github.com/eneko-codes/synthwave-theme) f
 3. Open **Terminal > Settings > Profiles**
 4. Select **Synthwave Neon Dark** and click **Default**
 
+The profile includes 90% opacity with 50% blur and 1.1x line height spacing. You can adjust these in Terminal > Settings > Profiles > Window/Text.
+
 ### Starship prompt
+
+The Starship config defines a `synthwave` palette with named colors and applies them to prompt modules. Requires a [Nerd Font](https://www.nerdfonts.com/) for the icons.
 
 Merge the contents of [`starship.toml`](starship.toml) into your `~/.config/starship.toml`:
 
@@ -38,7 +49,39 @@ Merge the contents of [`starship.toml`](starship.toml) into your `~/.config/star
 cat starship.toml >> ~/.config/starship.toml
 ```
 
-Or copy individual sections you want. The Starship config uses ANSI color names that map to the terminal palette, plus hex values for colors without ANSI equivalents (purple, orange).
+Or copy individual sections. The config uses a named palette, so you can tweak all colors from one place:
+
+```toml
+[palettes.synthwave]
+pink = "#ff2d95"
+cyan = "#00fff5"
+purple = "#c96eff"
+yellow = "#fffe6e"
+orange = "#ff9e64"
+green = "#5cffaa"
+blue = "#88aaff"
+red = "#ff4055"
+fg = "#e2d9f3"
+muted = "#6e6890"
+```
+
+### Shell colors (optional)
+
+Add these to your `~/.zshrc` for colorized `ls`, `grep`, and `man` pages:
+
+```sh
+export CLICOLOR=1
+export LSCOLORS="GxFxCxDxBxegedabagaced"
+alias grep='grep --color=auto'
+
+export LESS_TERMCAP_mb=$'\e[1;35m'
+export LESS_TERMCAP_md=$'\e[1;36m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[1;33m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[1;32m'
+export LESS_TERMCAP_ue=$'\e[0m'
+```
 
 ## Related
 

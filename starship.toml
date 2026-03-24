@@ -1,37 +1,57 @@
 # Synthwave Neon Dark - Starship prompt colors
 # Merge these settings into your existing ~/.config/starship.toml
 #
-# These styles use ANSI color names that map to the Synthwave Neon Dark
-# terminal palette. Install the Terminal.app profile first so the ANSI
-# colors resolve to the correct synthwave hex values.
+# Uses a named palette so all synthwave colors are defined once.
+# Requires a Nerd Font for the symbols.
+
+palette = "synthwave"
+
+[palettes.synthwave]
+pink = "#ff2d95"
+cyan = "#00fff5"
+purple = "#c96eff"
+yellow = "#fffe6e"
+orange = "#ff9e64"
+green = "#5cffaa"
+blue = "#88aaff"
+red = "#ff4055"
+fg = "#e2d9f3"
+muted = "#6e6890"
 
 [character]
-success_symbol = "[❯](bold #c96eff)"
-error_symbol = "[❯](bold #ff4055)"
+success_symbol = "[❯](bold purple)"
+error_symbol = "[❯](bold red)"
 
 [directory]
 style = "bold cyan"
 
 [git_branch]
-style = "bold magenta"
+style = "pink"
 
 [git_status]
-style = "bold yellow"
+style = "yellow"
+
+[cmd_duration]
+style = "muted"
+min_time = 2_000
 
 [nodejs]
-style = "bold green"
+style = "green"
 
 [python]
-style = "bold yellow"
+style = "yellow"
 
 [rust]
-style = "bold #ff9e64"
+style = "orange"
 
 [golang]
-style = "bold cyan"
+style = "cyan"
 
 [docker_context]
-style = "bold blue"
+style = "blue"
 
 [swift]
-style = "bold #ff9e64"
+style = "orange"
+
+[package]
+style = "orange"
