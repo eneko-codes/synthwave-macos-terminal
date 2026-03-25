@@ -1,166 +1,345 @@
-# Synthwave Neon Dark — Starship Powerline Prompt
-# Purple powerline segments with Nerd Font icons.
+# Synthwave Neon Dark — Starship Prompt
+# Neon-colored text prompt with Nerd Font icons, grouped by category.
 #
 # Copy to ~/.config/starship.toml or merge into your existing config.
-# Requires a Nerd Font for symbols and powerline characters.
+# Requires a Nerd Font (e.g. JetBrains Mono Nerd Font).
+#
+# Colors by category:
+#   purple  → navigation       cyan   → git
+#                              red    → danger/attention
+#   gray    → right-side context (all)
+#
 
 palette = "synthwave"
 
 format = """
+$username\
+$hostname\
 $directory\
 $git_branch\
+$git_state\
 $git_status\
-${custom.cap_git}\
-${custom.cap_dir}\
 $fill\
-$nodejs$bun$deno$rust$python$golang$java$ruby$kotlin$dart$php$c$lua$elixir$zig$swift$terraform$kubernetes$docker_context$package\
+$nodejs$bun$deno$rust$python$golang$java$ruby$kotlin$dart$php$c$lua$elixir$zig$swift\
+$haskell$ocaml$perl$scala$nim$julia$dotnet$crystal$purescript\
+$cmake$gradle\
+$package\
+$docker_context$kubernetes$terraform$aws$gcloud\
+${custom.env}\
+${custom.db}\
+$direnv\
+$sudo\
+$jobs$shlvl\
+$memory_usage$battery\
 $cmd_duration\
+$time\
 $line_break\
-$character"""
+$status$character"""
 
 [palettes.synthwave]
-pink = "#ff2d95"
+purple = "#e08fff"
 cyan = "#00fff5"
-purple = "#e48fff"
-purple_dark = "#382a58"
-purple_mid = "#4d3b70"
-yellow = "#fffe6e"
-orange = "#ff9e64"
-green = "#5cffaa"
-blue = "#88aaff"
-red = "#ff4055"
-fg = "#e2d9f3"
-bg = "#14101f"
-muted = "#5e5575"
+red = "#ff4466"
+gray = "#9595a8"
+fg = "#eee9f5"
 
 [fill]
 symbol = " "
 
+# ─── Navigation ──────────────────────────────────────────
+
 [directory]
-style = "bg:purple_dark fg:purple bold"
-format = "[  $path ]($style)"
+style = "purple bold"
+format = "[$path]($style) "
 truncation_length = 3
 truncation_symbol = "…/"
 
+# ─── Git ─────────────────────────────────────────────────
+
 [git_branch]
 symbol = ""
-style = "bg:purple_mid fg:purple bold"
-format = "[](bg:purple_mid fg:purple_dark)[ $symbol $branch ]($style)"
+style = "cyan bold"
+format = "[$branch]($style)"
+
+[git_state]
+style = "red bold"
+format = "[ $state( $progress_current/$progress_total)]($style) "
+rebase = "REBASING"
+merge = "MERGING"
+revert = "REVERTING"
+cherry_pick = "PICKING"
+bisect = "BISECTING"
+am = "APPLYING"
+am_or_rebase = "AM/REBASE"
 
 [git_status]
-style = "bg:purple_mid fg:purple"
-format = "[$all_status$ahead_behind]($style)"
+style = "cyan"
 
-[custom.cap_dir]
-when = "! git rev-parse --git-dir 2>/dev/null"
-format = "[](fg:purple_dark)"
-shell = ["sh"]
-
-[custom.cap_git]
-when = "git rev-parse --git-dir 2>/dev/null"
-format = "[](fg:purple_mid)"
-shell = ["sh"]
+# ─── Prompt ──────────────────────────────────────────────
 
 [character]
 success_symbol = "[›](bold purple)"
 error_symbol = "[›](bold red)"
 
-[cmd_duration]
-style = "muted"
-min_time = 2_000
+[status]
+disabled = true
+style = "red"
+symbol = ""
+format = "[$symbol $status ]($style)"
+
+# ─── Languages & Runtimes (gray) ────────────────────────
 
 [nodejs]
 symbol = ""
-style = "green"
-format = "[via $symbol $version ]($style)"
+style = "gray"
+format = "[$symbol $version ]($style)"
 
-[python]
-symbol = ""
-style = "yellow"
-format = "[via $symbol $version ]($style)"
+[bun]
+symbol = ""
+style = "gray"
+format = "[$symbol $version ]($style)"
+
+[deno]
+symbol = ""
+style = "gray"
+format = "[$symbol $version ]($style)"
 
 [rust]
 symbol = ""
-style = "orange"
-format = "[via $symbol $version ]($style)"
+style = "gray"
+format = "[$symbol $version ]($style)"
+
+[python]
+symbol = ""
+style = "gray"
+format = "[$symbol $version( $virtualenv)]($style) "
 
 [golang]
 symbol = ""
-style = "cyan"
-format = "[via $symbol $version ]($style)"
-
-[swift]
-symbol = ""
-style = "orange"
-format = "[via $symbol $version ]($style)"
-
-
-[package]
-style = "orange"
-format = "[via $symbol$version ]($style)"
+style = "gray"
+format = "[$symbol $version ]($style)"
 
 [java]
 symbol = ""
-style = "red"
-format = "[via $symbol $version ]($style)"
+style = "gray"
+format = "[$symbol $version ]($style)"
 
 [ruby]
 symbol = ""
-style = "red"
-format = "[via $symbol $version ]($style)"
-
-[php]
-symbol = ""
-style = "blue"
-format = "[via $symbol $version ]($style)"
-
-[c]
-symbol = ""
-style = "blue"
-format = "[via $symbol $version ]($style)"
+style = "gray"
+format = "[$symbol $version ]($style)"
 
 [kotlin]
 symbol = ""
-style = "purple"
-format = "[via $symbol $version ]($style)"
+style = "gray"
+format = "[$symbol $version ]($style)"
 
 [dart]
 symbol = ""
-style = "cyan"
-format = "[via $symbol $version ]($style)"
+style = "gray"
+format = "[$symbol $version ]($style)"
+
+[php]
+symbol = ""
+style = "gray"
+format = "[$symbol $version ]($style)"
+
+[c]
+symbol = ""
+style = "gray"
+format = "[$symbol $version ]($style)"
 
 [lua]
 symbol = ""
-style = "blue"
-format = "[via $symbol $version ]($style)"
+style = "gray"
+format = "[$symbol $version ]($style)"
 
 [elixir]
 symbol = ""
-style = "purple"
-format = "[via $symbol $version ]($style)"
+style = "gray"
+format = "[$symbol $version ]($style)"
 
 [zig]
 symbol = ""
-style = "orange"
-format = "[via $symbol $version ]($style)"
+style = "gray"
+format = "[$symbol $version ]($style)"
 
-[bun]
-style = "fg"
-format = "[via $symbol$version ]($style)"
+[swift]
+symbol = ""
+style = "gray"
+format = "[$symbol $version ]($style)"
 
-[deno]
-style = "green"
-format = "[via $symbol$version ]($style)"
+[haskell]
+symbol = ""
+style = "gray"
+format = "[$symbol $version ]($style)"
 
-[terraform]
-style = "blue"
-format = "[via $symbol$version ]($style)"
+[ocaml]
+symbol = ""
+style = "gray"
+format = "[$symbol $version ]($style)"
 
-[kubernetes]
-style = "cyan"
-format = "[on $symbol$context ]($style)"
-disabled = false
+[perl]
+symbol = ""
+style = "gray"
+format = "[$symbol $version ]($style)"
+
+[scala]
+symbol = ""
+style = "gray"
+format = "[$symbol $version ]($style)"
+
+[nim]
+symbol = ""
+style = "gray"
+format = "[$symbol $version ]($style)"
+
+[julia]
+symbol = ""
+style = "gray"
+format = "[$symbol $version ]($style)"
+
+[dotnet]
+symbol = ""
+style = "gray"
+format = "[$symbol $version ]($style)"
+
+[crystal]
+symbol = ""
+style = "gray"
+format = "[$symbol $version ]($style)"
+
+[purescript]
+symbol = ""
+style = "gray"
+format = "[$symbol $version ]($style)"
+
+# ─── Build Tools & Packages (gray) ─────────────────────
+
+[cmake]
+symbol = ""
+style = "gray"
+format = "[$symbol $version ]($style)"
+
+[gradle]
+symbol = ""
+style = "gray"
+format = "[$symbol $version ]($style)"
+
+[package]
+symbol = ""
+style = "gray"
+format = "[$symbol $version ]($style)"
+
+# ─── Infrastructure & Cloud (gray) ───────────────────────
 
 [docker_context]
-style = "blue"
-format = "[via $symbol$context ]($style)"
+symbol = ""
+style = "gray"
+format = "[$symbol $context ]($style)"
+
+[kubernetes]
+symbol = ""
+style = "gray"
+format = "[on $symbol $context ]($style)"
+disabled = false
+
+[terraform]
+symbol = ""
+style = "gray"
+format = "[$symbol $version ]($style)"
+
+[aws]
+symbol = ""
+style = "gray"
+format = "[$symbol $profile($region) ]($style)"
+
+[gcloud]
+symbol = ""
+style = "gray"
+format = "[$symbol $project ]($style)"
+
+# ─── Safety & Environment (red) ──────────────────────────
+
+[sudo]
+disabled = false
+symbol = ""
+style = "red bold"
+format = "[$symbol ]($style)"
+
+[username]
+style_user = "red bold"
+style_root = "red bold"
+format = "[$user]($style_user)[@](gray)"
+show_always = false
+
+[hostname]
+ssh_only = true
+style = "red bold"
+format = "[$hostname]($style) "
+ssh_symbol = " "
+
+# ─── System & Background (gray) ────────────────────────
+
+[cmd_duration]
+style = "gray"
+min_time = 2_000
+format = "[$duration ]($style)"
+
+[time]
+disabled = false
+style = "gray"
+format = "[ $time]($style) "
+time_format = "%H:%M"
+
+[jobs]
+symbol = ""
+style = "gray"
+threshold = 1
+format = "[$symbol$number ]($style)"
+
+[shlvl]
+disabled = false
+symbol = ""
+style = "gray"
+threshold = 2
+format = "[$symbol$shlvl ]($style)"
+
+[memory_usage]
+disabled = true
+
+[battery]
+format = "[$percentage ]($style)"
+
+[[battery.display]]
+threshold = 30
+style = "gray"
+
+[direnv]
+disabled = false
+symbol = ""
+loaded_msg = " direnv"
+unloaded_msg = ""
+allowed_msg = ""
+denied_msg = " "
+style = "gray"
+format = "[$symbol$loaded$allowed]($style) "
+
+# ─── Environment Context (gray) ─────────────────────────
+
+[custom.env]
+description = "App environment (prod/local/staging)"
+command = 'echo ${APP_ENV:-${NODE_ENV:-${GIN_MODE:-${FLASK_ENV:-${SPRING_PROFILES_ACTIVE:-${ENVIRONMENT:-}}}}}}'
+when = 'test -n "${APP_ENV}${NODE_ENV}${GIN_MODE}${FLASK_ENV}${SPRING_PROFILES_ACTIVE}${ENVIRONMENT}"'
+symbol = ""
+style = "gray"
+format = "[$symbol $output ]($style)"
+shell = ["sh"]
+
+[custom.db]
+command = "echo $DATABASE_URL | sed 's|.*/||;s|?.*||'"
+when = 'test -n "$DATABASE_URL"'
+symbol = ""
+style = "gray"
+format = "[$symbol $output ]($style)"
+shell = ["sh"]
