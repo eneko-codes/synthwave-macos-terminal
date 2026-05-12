@@ -1,0 +1,32 @@
+# Phosphor Neon Dark — Starship theme
+#
+# Theming-only fragment. Drop these blocks into your ~/.config/starship.toml,
+# then either set `palette = "phosphor"` at the top of your config to make the
+# named colors available, or reference the hex values directly in your own
+# module styles.
+#
+# Requires a Nerd Font (e.g. JetBrains Mono Nerd Font) for the prompt glyph
+# to render. Pairs with the matching ghostty.config / Terminal.app profile.
+
+palette = "phosphor"
+
+[palettes.phosphor]
+purple = "#e08fff"
+cyan   = "#00fff5"
+red    = "#ff4466"
+gray   = "#9595a8"
+fg     = "#eee9f5"
+
+# Prompt character — purple chevron, red on error
+[character]
+success_symbol = "[›](bold purple)"
+error_symbol   = "[›](bold red)"
+
+# Suggested style assignments for common modules:
+#   directory       → "purple bold"
+#   git_branch      → "cyan bold"
+#   git_status      → "cyan"
+#   cmd_duration    → "gray"
+#   time            → "gray"
+#   username/host   → "red bold"
+#   sudo            → "red bold"
